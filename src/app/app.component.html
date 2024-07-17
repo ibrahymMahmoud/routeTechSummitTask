@@ -1,0 +1,52 @@
+
+<div class="container mt-5 ">
+
+  <input id="myParagraph" [(ngModel)]="searchTerm" class="my-3 form-control border-3 border-dark shadow" placeholder="search by name...">
+    
+    <table class="table table-striped text-center table-bordered">
+        <thead>
+            <tr>
+                <td class="h3 bg-dark text-white">transaction id</td>
+                <td class="h3 bg-dark text-white">name</td>
+                <td class="h3 bg-dark text-white"> amount</td>
+                <td class="h3 bg-dark text-white">Graph</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let transaction of showTransactions| searchByName : searchTerm  ">
+                <td>{{transaction.Transaction_id}}</td>
+                <td>{{transaction.name}}</td>
+                <td>{{transaction.amount}}</td>
+                <td>
+                    <button (click)="getChart( transaction.name , transaction.custom_id)" type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        show
+                      </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    
+    
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="h3 ms-auto text-center" id="exampleModalLabel"> customer name</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body ">
+          
+            <canvas id="myChart"></canvas>
+            
+        </div>
+        <div class="modal-footer d-flex justify-content-center align-items-center">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+</div> 
